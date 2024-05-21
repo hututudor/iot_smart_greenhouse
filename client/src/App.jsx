@@ -11,7 +11,7 @@ import {
 import { getData } from './api'
 
 const GRAPH_HEIGHT = 200
-const GRAPH_WIDTH = 1000
+const GRAPH_WIDTH = 1400
 
 export const App = () => {
   const [data, setData] = useState([])
@@ -25,11 +25,11 @@ export const App = () => {
     }
 
     fetchData()
-  })
+  }, [])
 
   const wateringIntervals = getIntervals(data, 'watering')
   const sprayingIntervals = getIntervals(data, 'spraying')
-  const sprayingTimeIntervals = getIntervals(data, 'sprayingTime')
+  const sprayingTimeIntervals = getIntervals(data, 'spraying_time')
 
   if (loading) {
     return <p>Loading...</p>
@@ -214,7 +214,7 @@ const PestTooltip = ({ active, payload, label }) => {
         Pest Distance: <b>{dataPoint?.dist / 100}m</b>
       </p>
       <p>
-        Wants To Spray: <b>{dataPoint?.sprayingTime ? 'yes' : 'no'}</b>
+        Wants To Spray: <b>{dataPoint?.spraying_time ? 'yes' : 'no'}</b>
       </p>
       <p>
         Spraying: <b>{dataPoint?.spraying ? 'yes' : 'no'}</b>

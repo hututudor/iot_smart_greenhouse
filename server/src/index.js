@@ -1,6 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import knex from 'knex'
+import cors from 'cors'
 
 dotenv.config()
 
@@ -17,12 +18,13 @@ const db = knex({
 const app = express()
 
 app.use(express.json())
+app.use(cors())
 
 app.get('/', async (req, res) => {
   const dataPoints = await db('data_points')
     .select('*')
-    .orderBy('time', 'desc')
-    .limit(100)
+    .orderBy('time', 'asc')
+    .limit(200)
 
   res.status(200).json(dataPoints)
 })

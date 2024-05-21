@@ -23,10 +23,16 @@ for i in range(1000):
   else:
     moist -= int(random.random() * 5)
 
-  temp += int(random.random() * 2 - 1)
-  temp = max(30, min(40, temp))
+  temp += int(random.random() * 6 - 3)
+  temp = max(30, min(70, temp))
 
   people = random.random() > 0.9
+
+  if spray_time and not people:
+    spaying_timing = 10
+
+  if people:
+    spaying_timing = 0
 
   if spaying_timing > 0 :    
     dist += int(random.random() * 25)
@@ -35,17 +41,11 @@ for i in range(1000):
     dist = NO_DIST
     spray_time = False
 
-  if not spray_time:
+  if not spray_time :
     dist -= int(random.random() * 25)
 
   if dist < 50:
     spray_time = True
-
-  if spray_time and not people:
-    spaying_timing = 10
-
-  if people:
-    spaying_timing = 0
 
 
   f.write("MOIST " + str(moist) + "\n")

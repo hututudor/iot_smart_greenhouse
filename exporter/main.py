@@ -128,7 +128,7 @@ def check_entries(conn):
 
 def main():
     conn = connect_to_db()
-    migrate(conn)
+    # migrate(conn)
     check_migration(conn)
     delete_old_data(conn)
     populate_database(conn)
